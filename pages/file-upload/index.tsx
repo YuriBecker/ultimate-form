@@ -6,7 +6,7 @@ import { Button, useMantineTheme } from "@mantine/core";
 import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
 import { showNotification } from "@mantine/notifications";
 import { Controller, useForm } from "react-hook-form";
-import fileUploadSchema from "./schema";
+import fileUploadSchema from "@/utils/schemas/file-upload/schema";
 
 const FileUpload = () => {
   const {

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import countryList from "@/utils/countrysList";
 import useSubmitForm from "@/hooks/useSubmitForm";
 import { yupResolver } from "@hookform/resolvers/yup";
-import addressSchema from "./schema";
+import addressSchema from "@/utils/schemas/address/schema";
 import { DevTool } from "@hookform/devtools";
 
 const Address: NextPage = () => {

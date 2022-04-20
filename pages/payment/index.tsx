@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import useSubmitForm from "@/hooks/useSubmitForm";
-import paymentSchema from "./schema";
+import paymentSchema from "@/utils/schemas/payment/schema";
 import { DevTool } from "@hookform/devtools";
 
 const Payment: NextPage = () => {

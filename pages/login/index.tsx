@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useSubmitForm from "@/hooks/useSubmitForm";
 import { yupResolver } from "@hookform/resolvers/yup";
-import loginSchema from "./schema";
+import loginSchema from "@/utils/schemas/login/schema";
 import { DevTool } from "@hookform/devtools";
 
 const Login: NextPage = () => {

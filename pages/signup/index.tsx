@@ -12,7 +12,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import useSubmitForm from "@/hooks/useSubmitForm";
 import formatterPhone from "@/utils/formatters/phone";
-import signUpSchema from "./schema";
+import signUpSchema from "@/utils/schemas/signup/schema";
 import { DevTool } from "@hookform/devtools";
 
 const Signup: NextPage = () => {
