@@ -58,7 +58,7 @@ const Payment: NextPage = () => {
         <TextInput
           label="Expiry date"
           autoComplete="cc-exp"
-          description="MM/YY"
+          description="MM/YY or MM/YYYY"
           required
           error={errors?.expiryDate?.message}
           {...register("expiryDate")}
