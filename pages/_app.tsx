@@ -17,11 +17,12 @@ export default function App(props: AppProps) {
           name="description"
           content="Accessible form examples using React-hook-form and Mantine"
         />
-        <meta name="keywords" content="Form examples, Accessible" />
+        <meta name="keywords" content="form, accessible, examples" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <meta name="rating" content="general" />
       </Head>
 
       <MantineProvider
