@@ -64,22 +64,13 @@ const Payment: NextPage = () => {
           {...register("expiryDate")}
         />
 
-        <Controller
-          defaultValue={""}
-          control={control}
-          name={"securityCode"}
-          render={({ field }) => (
-            <NumberInput
-              label="Security code"
-              required
-              error={errors?.securityCode?.message}
-              onChange={field.onChange}
-              value={field.value}
-              hideControls
-              autoComplete="cc-csc"
-              id="security-code"
-            />
-          )}
+        <TextInput
+          required
+          label="Security code"
+          inputMode="numeric"
+          error={errors?.cvc?.message}
+          autoComplete="cc-csc"
+          {...register("cvc")}
         />
 
         <Button fullWidth type="submit" loading={isSubmitting} uppercase>
