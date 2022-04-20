@@ -12,10 +12,12 @@ export default function App(props: AppProps) {
     <>
       <Head>
         <title>Ultimate Form</title>
+        <meta name="author" content="Yuri Becker" />
         <meta
           name="description"
           content="Accessible form examples using React-hook-form and Mantine"
-        ></meta>
+        />
+        <meta name="keywords" content="Forms, Accessible" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
