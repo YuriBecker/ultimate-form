@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run i18n && next build",
     "start": "next start",
     "lint": "next lint",
     "extract:i18n": "formatjs extract '{pages,components,sections}/**/*.{js,ts,tsx}' --format simple --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file content/locales/en.json",

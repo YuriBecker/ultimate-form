@@ -80,6 +80,7 @@ export default function App(props: AppProps) {
               onError={() => null}
             >
               <AppMenu>
+                {/* @ts-ignore */}
                 <Component {...pageProps} />
               </AppMenu>
             </IntlProvider>
