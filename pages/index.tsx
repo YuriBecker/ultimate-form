@@ -1,5 +1,6 @@
 import { Stack, Text } from "@mantine/core";
 import type { NextPage } from "next";
+import { FormattedMessage } from "react-intl";
 
 const Home: NextPage = () => {
   return (
@@ -10,11 +11,12 @@ const Home: NextPage = () => {
         variant="gradient"
         gradient={{ from: "pink", to: "grape", deg: 90 }}
         weight={700}
-        sx={() => ({
+        sx={(theme) => ({
           fontSize: "48px",
+          marginBottom: theme.spacing.sm,
         })}
       >
-        Welcome to Ultimate Form Examples!
+        <FormattedMessage defaultMessage="Welcome to Ultimate Form Examples!" />
       </Text>
 
       <Text
@@ -25,7 +27,7 @@ const Home: NextPage = () => {
         gradient={{ from: "grape", to: "pink", deg: 90 }}
         weight={700}
       >
-        Get started picking a example
+        <FormattedMessage defaultMessage="Get started picking a example" />
       </Text>
     </Stack>
   );
