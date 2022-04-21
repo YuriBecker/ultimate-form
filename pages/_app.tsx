@@ -4,9 +4,29 @@ import { MantineProvider } from "@mantine/core";
 import AppMenu from "@/components/AppMenu";
 import { ModalsProvider } from "@mantine/modals";
 import { NotificationsProvider } from "@mantine/notifications";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
+import English from "@/content/locales/en.json";
+import Portuguese from "@/content/locales/pt.json";
+import { IntlProvider } from "react-intl";
+import "../styles/global.scss";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+
+  const { locale, locales, asPath } = useRouter();
+  const [shortLocale] = locale ? locale.split("-") : ["en"];
+
+  const messages = useMemo(() => {
+    switch (shortLocale) {
+      case "pt":
+        return Portuguese;
+      case "en":
+        return English;
+      default:
+        return English;
+    }
+  }, [shortLocale]);
 
   return (
     <>
@@ -23,6 +43,18 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
         <meta name="rating" content="general" />
+
+        {process.env.NODE_ENV === "production" &&
+          locales?.map((locale) => {
+            return (
+              <link
+                key={locale}
+                rel="alternate"
+                hrefLang={locale}
+                href={`${process.env.VERCEL_URL}/${locale}${asPath}`}
+              />
+            );
+          })}
       </Head>
 
       <MantineProvider
@@ -41,9 +73,16 @@ export default function App(props: AppProps) {
       >
         <ModalsProvider>
           <NotificationsProvider>
-            <AppMenu>
-              <Component {...pageProps} />
-            </AppMenu>
+            <IntlProvider
+              locale={shortLocale}
+              defaultLocale="en"
+              messages={messages}
+              onError={() => null}
+            >
+              <AppMenu>
+                <Component {...pageProps} />
+              </AppMenu>
+            </IntlProvider>
           </NotificationsProvider>
         </ModalsProvider>
       </MantineProvider>
