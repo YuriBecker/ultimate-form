@@ -5,14 +5,12 @@ import countryList from "@/utils/countrysList";
 import useSubmitForm from "@/hooks/useSubmitForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addressSchema from "@/utils/schemas/address/schema";
-import { DevTool } from "@hookform/devtools";
 
 const Address: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    control,
   } = useForm({
     resolver: yupResolver(addressSchema),
   });
@@ -62,8 +60,6 @@ const Address: NextPage = () => {
         <Button fullWidth type="submit" uppercase loading={isSubmitting}>
           Add address
         </Button>
-
-        <DevTool control={control} />
       </form>
     </Container>
   );

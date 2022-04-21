@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactNode, useState } from "react";
+import LanguageSelector from "../LanguageSelector";
 
 export default function AppMenu({ children }: { children: ReactNode }) {
   const theme = useMantineTheme();
@@ -96,7 +97,12 @@ export default function AppMenu({ children }: { children: ReactNode }) {
       header={
         <Header height={50} p="md">
           <div
-            style={{ display: "flex", alignItems: "center", height: "100%" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              justifyContent: "space-between",
+            }}
           >
             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
               <Burger
@@ -111,6 +117,8 @@ export default function AppMenu({ children }: { children: ReactNode }) {
             <Link href="/" passHref>
               <Button variant="subtle">Ultimate Form Examples</Button>
             </Link>
+
+            <LanguageSelector />
           </div>
         </Header>
       }
