@@ -1,6 +1,6 @@
 import DropzoneFeedback from "@/components/DropzoneFeedback";
 import useSubmitForm from "@/hooks/useSubmitForm";
-import { DevTool } from "@hookform/devtools";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, useMantineTheme } from "@mantine/core";
 import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
@@ -70,8 +70,6 @@ const FileUpload = () => {
       >
         Send file
       </Button>
-
-      <DevTool control={control} />
     </form>
   );
 };

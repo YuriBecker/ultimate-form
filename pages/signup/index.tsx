@@ -1,4 +1,3 @@
-import { formatCPF } from "@brazilian-utils/brazilian-utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
@@ -13,7 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import useSubmitForm from "@/hooks/useSubmitForm";
 import formatterPhone from "@/utils/formatters/phone";
 import signUpSchema from "@/utils/schemas/signup/schema";
-import { DevTool } from "@hookform/devtools";
+import PhoneInput from "@/components/Inputs/Phone";
 
 const Signup: NextPage = () => {
   const {
@@ -39,21 +38,6 @@ const Signup: NextPage = () => {
           {...register("name")}
         />
 
-        <Controller
-          defaultValue={""}
-          control={control}
-          name={"cpf"}
-          render={({ field }) => (
-            <TextInput
-              label="CPF"
-              required
-              error={errors?.cpf?.message}
-              onChange={(e) => field.onChange(formatCPF(e.target.value))}
-              value={field.value}
-            />
-          )}
-        />
-
         <TextInput
           label="Email"
           autoComplete="username"
@@ -73,29 +57,17 @@ const Signup: NextPage = () => {
         <Switch label="I have a phone number" {...register("hasPhone")} />
 
         {hasPhone && (
-          <Controller
+          <PhoneInput
+            errorMessage={errors?.phone?.message}
             defaultValue={""}
             control={control}
             name={"phone"}
-            render={({ field }) => (
-              <TextInput
-                label="Phone"
-                autoComplete="phone"
-                required
-                type="tel"
-                error={errors?.phone?.message}
-                onChange={(e) => field.onChange(formatterPhone(e.target.value))}
-                value={field.value}
-              />
-            )}
           />
         )}
 
         <Button fullWidth type="submit" uppercase loading={isSubmitting}>
           SIGN UP
         </Button>
-
-        <DevTool control={control} />
       </form>
     </Container>
   );
