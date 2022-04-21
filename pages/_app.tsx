@@ -51,7 +51,7 @@ export default function App(props: AppProps) {
                 key={locale}
                 rel="alternate"
                 hrefLang={locale}
-                href={`${process.env.VERCEL_URL}/${locale}${asPath}`}
+                href={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/${locale}${asPath}`}
               />
             );
           })}
