@@ -77,7 +77,7 @@ export default function App(props: AppProps) {
               locale={shortLocale}
               defaultLocale="en"
               messages={messages}
-              onError={() => null}
+              // onError={() => null}
             >
               <AppMenu>
                 {/* @ts-ignore */}
