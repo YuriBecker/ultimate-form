@@ -1,54 +1,79 @@
-import { ActionIcon, Menu } from "@mantine/core";
+import { ActionIcon, Menu, Tooltip } from "@mantine/core";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 import styles from "./style.module.scss";
 
 type localesEnum = "en-US" | "pt-BR";
 
 const LanguageSelector = () => {
   const { locale, asPath, push } = useRouter();
+  const [opened, setOpened] = useState(true);
+
+  const tooltipLabel = useIntl().formatMessage({
+    defaultMessage: "Change the language here",
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpened(false);
+    }, 2000);
+  }, []);
 
   const languageIcons = {
-    "en-US": <Image alt="en-US" src="/flags/US.svg" width={25} height={25} />,
-    "pt-BR": <Image alt="pt-BR" src="/flags/BR.svg" width={25} height={25} />,
+    "en-US": (
+      <Image alt="en-US" src="/flags/US.svg" width={25} height={25} priority />
+    ),
+    "pt-BR": (
+      <Image alt="pt-BR" src="/flags/BR.svg" width={25} height={25} priority />
+    ),
   };
 
   return (
-    <Menu
-      control={<ActionIcon>{languageIcons[locale as localesEnum]}</ActionIcon>}
-      classNames={{
-        itemIcon: styles.icon,
-      }}
-      menuButtonLabel="Language selector"
+    <Tooltip
+      opened={opened}
+      label={tooltipLabel}
+      position="bottom"
+      placement="end"
+      withArrow
     >
-      <Menu.Label>
-        <FormattedMessage defaultMessage="Languages" />
-      </Menu.Label>
-
-      <Menu.Item
-        icon={languageIcons["en-US"]}
-        onClick={() => {
-          push(asPath, asPath, {
-            locale: "en-US",
-          });
+      <Menu
+        control={
+          <ActionIcon>{languageIcons[locale as localesEnum]}</ActionIcon>
+        }
+        classNames={{
+          itemIcon: styles.icon,
         }}
+        menuButtonLabel="Language selector"
       >
-        English
-      </Menu.Item>
+        <Menu.Label>
+          <FormattedMessage defaultMessage="Languages" />
+        </Menu.Label>
 
-      <Menu.Item
-        icon={languageIcons["pt-BR"]}
-        onClick={() => {
-          push(asPath, asPath, {
-            locale: "pt-BR",
-          });
-        }}
-      >
-        Português
-      </Menu.Item>
-    </Menu>
+        <Menu.Item
+          icon={languageIcons["en-US"]}
+          onClick={() => {
+            push(asPath, asPath, {
+              locale: "en-US",
+            });
+          }}
+        >
+          English
+        </Menu.Item>
+
+        <Menu.Item
+          icon={languageIcons["pt-BR"]}
+          onClick={() => {
+            push(asPath, asPath, {
+              locale: "pt-BR",
+            });
+          }}
+        >
+          Português
+        </Menu.Item>
+      </Menu>
+    </Tooltip>
   );
 };
 
